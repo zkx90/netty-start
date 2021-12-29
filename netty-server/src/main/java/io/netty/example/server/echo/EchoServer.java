@@ -10,7 +10,6 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
- * DiscardServer
  * 测试方法：telnet localhost 8080
  */
 public class EchoServer {

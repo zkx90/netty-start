@@ -1,4 +1,4 @@
-package io.netty.example.server.discard;
+package io.netty.example.server.time;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,14 +8,17 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.example.server.echo.EchoServerHandler;
+
+import java.sql.Time;
 
 /**
  * 测试方法：telnet localhost 8080
  */
-public class DiscardServer {
+public class TimeServer {
     private int port;
 
-    public DiscardServer(int port) {
+    public TimeServer(int port) {
         this.port = port;
     }
 
@@ -29,7 +32,7 @@ public class DiscardServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(new DiscardServerHandler());
+                            socketChannel.pipeline().addLast(new TimerServerHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
@@ -45,6 +48,6 @@ public class DiscardServer {
 
     public static void main(String[] args) throws InterruptedException {
         int port = 8080;
-        new DiscardServer(port).run();
+        new TimeServer(port).run();
     }
 }
